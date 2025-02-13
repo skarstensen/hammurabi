@@ -1,5 +1,7 @@
 extends Control
 
+class_name MenuSystem
+
 @export var aboutDialog:Control
 @export var titleMenu:Control
 @export var gameTitleVersionLabel:Label

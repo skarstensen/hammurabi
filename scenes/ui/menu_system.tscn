@@ -1,0 +1,123 @@
+[gd_scene load_steps=4 format=3 uid="uid://w7ls8sn1xxit"]
+
+[ext_resource type="Script" path="res://scripts/ui/menu_system.gd" id="1_5gigl"]
+[ext_resource type="FontFile" uid="uid://b8unsx4awokls" path="res://PAPYRUS.TTF" id="1_k71br"]
+[ext_resource type="Theme" uid="uid://btn0fpp53vl7w" path="res://primary_theme.tres" id="2_14gwj"]
+
+[node name="Menu System" type="Control" node_paths=PackedStringArray("aboutDialog", "titleMenu", "gameTitleVersionLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5gigl")
+aboutDialog = NodePath("About Dialog")
+titleMenu = NodePath("Title Screen")
+gameTitleVersionLabel = NodePath("About Dialog/PanelContainer/MarginContainer/VBoxContainer/Game Title and Version")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.666667)
+
+[node name="Title Screen" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Title Screen"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Title Screen/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Title" type="Label" parent="Title Screen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.519, 0.33, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_k71br")
+theme_override_font_sizes/font_size = 75
+text = "HAMMURABI"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Title Screen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 75
+theme_override_constants/margin_right = 75
+
+[node name="Buttons" type="VBoxContainer" parent="Title Screen/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Ten Year Mode Button" type="Button" parent="Title Screen/MarginContainer/VBoxContainer/MarginContainer/Buttons"]
+layout_mode = 2
+theme = ExtResource("2_14gwj")
+text = "Reign for Ten Years"
+
+[node name="Endless Mode Button" type="Button" parent="Title Screen/MarginContainer/VBoxContainer/MarginContainer/Buttons"]
+layout_mode = 2
+theme = ExtResource("2_14gwj")
+text = "Endless Mode"
+
+[node name="Credits Button" type="Button" parent="Title Screen/MarginContainer/VBoxContainer/MarginContainer/Buttons"]
+layout_mode = 2
+theme = ExtResource("2_14gwj")
+text = "Credits/About"
+
+[node name="About Dialog" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="About Dialog"]
+layout_mode = 2
+theme = ExtResource("2_14gwj")
+
+[node name="MarginContainer" type="MarginContainer" parent="About Dialog/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="About Dialog/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Game Title and Version" type="Label" parent="About Dialog/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Hammurabi v%s"
+
+[node name="About Text" type="Label" parent="About Dialog/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Hammurabi (original Focal version): author unknown
+Converted to BASIC by David Ahl, circa 1978
+
+Godot version by Steve Karstensen
+
+Photo credit: The City of Ur, Southern Iraq by M. Lubinski
+Released via Creative Commons 4.0 Sharealike
+https://creativecommons.org/licenses/by-sa/4.0/
+
+UI Graphics: UI Pack - RPG Expansion by Kenney.nl"
+
+[node name="OK Button" type="Button" parent="About Dialog/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "OK"
+
+[connection signal="pressed" from="About Dialog/PanelContainer/MarginContainer/VBoxContainer/OK Button" to="." method="_on_about_ok_button_pressed"]

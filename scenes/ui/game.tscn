@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv0j7rb58oq5d"]
+
+[ext_resource type="Texture2D" uid="uid://b62yqbjhso76d" path="res://gfx/ruins-of-ur-347.jpg" id="1_6q1ev"]
+[ext_resource type="PackedScene" uid="uid://w7ls8sn1xxit" path="res://scenes/ui/menu_system.tscn" id="2_wfs1l"]
+
+[node name="Game" type="Node"]
+
+[node name="Main UI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Main UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6q1ev")
+
+[node name="Menu System" parent="." instance=ExtResource("2_wfs1l")]

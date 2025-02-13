@@ -75,6 +75,7 @@ theme = ExtResource("2_14gwj")
 text = "Credits/About"
 
 [node name="About Dialog" type="CenterContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -120,4 +121,5 @@ UI Graphics: UI Pack - RPG Expansion by Kenney.nl"
 layout_mode = 2
 text = "OK"
 
+[connection signal="pressed" from="Title Screen/MarginContainer/VBoxContainer/MarginContainer/Buttons/Credits Button" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="About Dialog/PanelContainer/MarginContainer/VBoxContainer/OK Button" to="." method="_on_about_ok_button_pressed"]

@@ -11,3 +11,7 @@ func _ready():
 
 func _on_about_ok_button_pressed():
 	aboutDialog.hide()
+
+
+func _on_credits_button_pressed():
+	aboutDialog.show()

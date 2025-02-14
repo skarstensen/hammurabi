@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://btn0fpp53vl7w"]
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://btn0fpp53vl7w"]
 
 [ext_resource type="Texture2D" uid="uid://cjtcwtmq2anro" path="res://gfx/buttonSquare_beige.png" id="1_1tpkn"]
 [ext_resource type="FontFile" uid="uid://b8unsx4awokls" path="res://PAPYRUS.TTF" id="1_2g6qu"]
@@ -39,6 +39,36 @@ texture_margin_top = 4.0
 texture_margin_right = 8.0
 texture_margin_bottom = 4.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85qmn"]
+bg_color = Color(0.827451, 0.74902, 0.560784, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fg8uu"]
+bg_color = Color(0.901015, 0.843739, 0.706851, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07a20"]
+bg_color = Color(0.684326, 0.601408, 0.400392, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5dbs"]
+content_margin_left = 10.0
+bg_color = Color(0.580392, 0.427451, 0.207843, 1)
+border_color = Color(0.580303, 0.426332, 0.20768, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_focus_color = Color(0, 0, 0, 1)
@@ -53,3 +83,7 @@ Button/styles/pressed = SubResource("StyleBoxTexture_ntugb")
 Label/colors/font_color = Color(0.0588235, 0.0509804, 0.0392157, 1)
 Label/fonts/font = ExtResource("1_2g6qu")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_d33is")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_85qmn")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_fg8uu")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_07a20")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_m5dbs")

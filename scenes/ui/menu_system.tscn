@@ -64,10 +64,10 @@ layout_mode = 2
 theme = ExtResource("2_14gwj")
 text = "Reign for Ten Years"
 
-[node name="Endless Mode Button" type="Button" parent="Title Screen/MarginContainer/VBoxContainer/MarginContainer/Buttons"]
+[node name="Lifetime Mode Button" type="Button" parent="Title Screen/MarginContainer/VBoxContainer/MarginContainer/Buttons"]
 layout_mode = 2
 theme = ExtResource("2_14gwj")
-text = "Endless Mode"
+text = "Reign for Life"
 
 [node name="Credits Button" type="Button" parent="Title Screen/MarginContainer/VBoxContainer/MarginContainer/Buttons"]
 layout_mode = 2
@@ -121,5 +121,7 @@ UI Graphics: UI Pack - RPG Expansion by Kenney.nl"
 layout_mode = 2
 text = "OK"
 
+[connection signal="pressed" from="Title Screen/MarginContainer/VBoxContainer/MarginContainer/Buttons/Ten Year Mode Button" to="." method="_on_ten_year_mode_button_pressed"]
+[connection signal="pressed" from="Title Screen/MarginContainer/VBoxContainer/MarginContainer/Buttons/Lifetime Mode Button" to="." method="_on_lifetime_mode_button_pressed"]
 [connection signal="pressed" from="Title Screen/MarginContainer/VBoxContainer/MarginContainer/Buttons/Credits Button" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="About Dialog/PanelContainer/MarginContainer/VBoxContainer/OK Button" to="." method="_on_about_ok_button_pressed"]

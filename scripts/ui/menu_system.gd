@@ -2,6 +2,8 @@ extends Control
 
 class_name MenuSystem
 
+signal START_GAME(reign:int)
+
 @export var aboutDialog:Control
 @export var titleMenu:Control
 @export var gameTitleVersionLabel:Label
@@ -15,3 +17,11 @@ func _on_about_ok_button_pressed():
 
 func _on_credits_button_pressed():
 	aboutDialog.show()
+
+
+func _on_ten_year_mode_button_pressed():
+	START_GAME.emit(10)
+
+
+func _on_lifetime_mode_button_pressed():
+	START_GAME.emit(randi_range(60, 80))

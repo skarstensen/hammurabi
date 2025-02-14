@@ -1,12 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv0j7rb58oq5d"]
+[gd_scene load_steps=7 format=3 uid="uid://cv0j7rb58oq5d"]
 
 [ext_resource type="Texture2D" uid="uid://b62yqbjhso76d" path="res://gfx/ruins-of-ur-347.jpg" id="1_6q1ev"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_lirti"]
 [ext_resource type="Theme" uid="uid://btn0fpp53vl7w" path="res://primary_theme.tres" id="2_a6l84"]
 [ext_resource type="PackedScene" uid="uid://w7ls8sn1xxit" path="res://scenes/ui/menu_system.tscn" id="2_wfs1l"]
+[ext_resource type="Texture2D" uid="uid://dhbqydf850vtt" path="res://gfx/arrowBeige_updown.png" id="4_a6kq1"]
+[ext_resource type="FontFile" uid="uid://b8unsx4awokls" path="res://PAPYRUS.TTF" id="4_xgwig"]
 
-[node name="Game" type="Node"]
+[node name="Game" type="Node" node_paths=PackedStringArray("messageBox", "populationLabel", "grainLabel", "acresLabel", "acresSpinbox")]
 script = ExtResource("1_lirti")
+messageBox = NodePath("Main UI/CenterContainer/VBoxContainer/HBoxContainer/Main Window/MarginContainer/MessageBox")
+populationLabel = NodePath("Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats/GridContainer/Population Value")
+grainLabel = NodePath("Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats/GridContainer/Grain Value Label")
+acresLabel = NodePath("Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats/GridContainer/Land Value Label")
+acresSpinbox = NodePath("Main UI/CenterContainer/VBoxContainer/Controls/MarginContainer/HBoxContainer/Acre Spinbox")
 
 [node name="Main UI" type="Control" parent="."]
 layout_mode = 3
@@ -41,7 +48,27 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Main Window" type="PanelContainer" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer/Main Window"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="MessageBox" type="RichTextLabel" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer/Main Window/MarginContainer"]
+custom_minimum_size = Vector2(475, 150)
+layout_mode = 2
+theme = ExtResource("2_a6l84")
+theme_override_colors/default_color = Color(0.22, 0.14432, 0.0308, 1)
+theme_override_fonts/normal_font = ExtResource("4_xgwig")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+scroll_following = true
+autowrap_mode = 2
+drag_and_drop_selection_enabled = false
 
 [node name="Stats" type="PanelContainer" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -84,5 +111,54 @@ theme_override_font_sizes/font_size = 25
 text = "000"
 horizontal_alignment = 2
 
+[node name="Controls" type="PanelContainer" parent="Main UI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Main UI/CenterContainer/VBoxContainer/Controls"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main UI/CenterContainer/VBoxContainer/Controls/MarginContainer"]
+layout_mode = 2
+
+[node name="Year Label" type="Label" parent="Main UI/CenterContainer/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Year:"
+
+[node name="Year Value Label" type="Label" parent="Main UI/CenterContainer/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "000"
+horizontal_alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Main UI/CenterContainer/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Acre Spinbox" type="SpinBox" parent="Main UI/CenterContainer/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_icons/updown = ExtResource("4_a6kq1")
+rounded = true
+alignment = 2
+suffix = "acres"
+custom_arrow_step = 1.0
+
+[node name="Buy Button" type="Button" parent="Main UI/CenterContainer/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Buy Land"
+
+[node name="Sell Button" type="Button" parent="Main UI/CenterContainer/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Sell Land"
+
+[node name="Plant Button" type="Button" parent="Main UI/CenterContainer/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Plant Grain"
+
 [node name="Menu System" parent="." instance=ExtResource("2_wfs1l")]
 visible = false
+
+[connection signal="START_GAME" from="Menu System" to="." method="_on_menu_system_start_game"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cv0j7rb58oq5d"]
+[gd_scene load_steps=5 format=3 uid="uid://cv0j7rb58oq5d"]
 
 [ext_resource type="Texture2D" uid="uid://b62yqbjhso76d" path="res://gfx/ruins-of-ur-347.jpg" id="1_6q1ev"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_lirti"]
+[ext_resource type="Theme" uid="uid://btn0fpp53vl7w" path="res://primary_theme.tres" id="2_a6l84"]
 [ext_resource type="PackedScene" uid="uid://w7ls8sn1xxit" path="res://scenes/ui/menu_system.tscn" id="2_wfs1l"]
 
 [node name="Game" type="Node"]
@@ -14,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_a6l84")
 
 [node name="TextureRect" type="TextureRect" parent="Main UI"]
 layout_mode = 1
@@ -24,4 +26,63 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_6q1ev")
 
+[node name="CenterContainer" type="CenterContainer" parent="Main UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main UI/CenterContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main UI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Main Window" type="PanelContainer" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Stats" type="PanelContainer" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats"]
+layout_mode = 2
+columns = 2
+
+[node name="Population Label" type="Label" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Population:"
+
+[node name="Population Value" type="Label" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats/GridContainer"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "000"
+horizontal_alignment = 2
+
+[node name="Grain Label" type="Label" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Grain:"
+
+[node name="Grain Value Label" type="Label" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "000"
+horizontal_alignment = 2
+
+[node name="Land Label" type="Label" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Land:"
+
+[node name="Land Value Label" type="Label" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "000"
+horizontal_alignment = 2
+
 [node name="Menu System" parent="." instance=ExtResource("2_wfs1l")]
+visible = false

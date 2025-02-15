@@ -69,6 +69,11 @@ layout_mode = 2
 theme = ExtResource("2_14gwj")
 text = "Reign for Life"
 
+[node name="High Scores Button" type="Button" parent="Title Screen/MarginContainer/VBoxContainer/MarginContainer/Buttons"]
+layout_mode = 2
+theme = ExtResource("2_14gwj")
+text = "Hall of Kings"
+
 [node name="Credits Button" type="Button" parent="Title Screen/MarginContainer/VBoxContainer/MarginContainer/Buttons"]
 layout_mode = 2
 theme = ExtResource("2_14gwj")
@@ -123,5 +128,6 @@ text = "OK"
 
 [connection signal="pressed" from="Title Screen/MarginContainer/VBoxContainer/MarginContainer/Buttons/Ten Year Mode Button" to="." method="_on_ten_year_mode_button_pressed"]
 [connection signal="pressed" from="Title Screen/MarginContainer/VBoxContainer/MarginContainer/Buttons/Lifetime Mode Button" to="." method="_on_lifetime_mode_button_pressed"]
+[connection signal="pressed" from="Title Screen/MarginContainer/VBoxContainer/MarginContainer/Buttons/High Scores Button" to="." method="_on_high_scores_button_pressed"]
 [connection signal="pressed" from="Title Screen/MarginContainer/VBoxContainer/MarginContainer/Buttons/Credits Button" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="About Dialog/PanelContainer/MarginContainer/VBoxContainer/OK Button" to="." method="_on_about_ok_button_pressed"]

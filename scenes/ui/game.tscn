@@ -7,13 +7,18 @@
 [ext_resource type="Texture2D" uid="uid://dhbqydf850vtt" path="res://gfx/arrowBeige_updown.png" id="4_a6kq1"]
 [ext_resource type="FontFile" uid="uid://b8unsx4awokls" path="res://PAPYRUS.TTF" id="4_xgwig"]
 
-[node name="Game" type="Node" node_paths=PackedStringArray("messageBox", "populationLabel", "grainLabel", "acresLabel", "acresSpinbox")]
+[node name="Game" type="Node" node_paths=PackedStringArray("menuSystem", "gameUI", "messageBox", "populationLabel", "grainLabel", "acresLabel", "yearCounterLabel", "quantitySpinbox", "controlsContainer", "playButtonsContainer")]
 script = ExtResource("1_lirti")
-messageBox = NodePath("Main UI/CenterContainer/VBoxContainer/HBoxContainer/Main Window/MarginContainer/MessageBox")
-populationLabel = NodePath("Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats/GridContainer/Population Value")
-grainLabel = NodePath("Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats/GridContainer/Grain Value Label")
-acresLabel = NodePath("Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats/GridContainer/Land Value Label")
-acresSpinbox = NodePath("Main UI/CenterContainer/VBoxContainer/Controls/MarginContainer/HBoxContainer/Acre Spinbox")
+menuSystem = NodePath("Menu System")
+gameUI = NodePath("Main UI/Game UI")
+messageBox = NodePath("Main UI/Game UI/VBoxContainer/HBoxContainer/Main Window/MarginContainer/MessageBox")
+populationLabel = NodePath("Main UI/Game UI/VBoxContainer/HBoxContainer/Stats/MarginContainer/GridContainer/Population Value")
+grainLabel = NodePath("Main UI/Game UI/VBoxContainer/HBoxContainer/Stats/MarginContainer/GridContainer/Grain Value Label")
+acresLabel = NodePath("Main UI/Game UI/VBoxContainer/HBoxContainer/Stats/MarginContainer/GridContainer/Land Value Label")
+yearCounterLabel = NodePath("Main UI/Game UI/VBoxContainer/Controls/MarginContainer/HBoxContainer/Year Value Label")
+quantitySpinbox = NodePath("Main UI/Game UI/VBoxContainer/Controls/MarginContainer/HBoxContainer/Quantity Spinbox")
+controlsContainer = NodePath("Main UI/Game UI/VBoxContainer/Controls")
+playButtonsContainer = NodePath("Main UI/Game UI/VBoxContainer/Play Again Buttons")
 
 [node name="Main UI" type="Control" parent="."]
 layout_mode = 3
@@ -33,7 +38,8 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_6q1ev")
 
-[node name="CenterContainer" type="CenterContainer" parent="Main UI"]
+[node name="Game UI" type="CenterContainer" parent="Main UI"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,124 +47,155 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Main UI/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main UI/Game UI"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Main UI/CenterContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Main UI/Game UI/VBoxContainer"]
 layout_mode = 2
 
-[node name="Main Window" type="PanelContainer" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
+[node name="Main Window" type="PanelContainer" parent="Main UI/Game UI/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(750, 400)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer/Main Window"]
+[node name="MarginContainer" type="MarginContainer" parent="Main UI/Game UI/VBoxContainer/HBoxContainer/Main Window"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="MessageBox" type="RichTextLabel" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer/Main Window/MarginContainer"]
+[node name="MessageBox" type="RichTextLabel" parent="Main UI/Game UI/VBoxContainer/HBoxContainer/Main Window/MarginContainer"]
 custom_minimum_size = Vector2(475, 150)
 layout_mode = 2
 theme = ExtResource("2_a6l84")
 theme_override_colors/default_color = Color(0.22, 0.14432, 0.0308, 1)
 theme_override_fonts/normal_font = ExtResource("4_xgwig")
-theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 scroll_following = true
 autowrap_mode = 2
 drag_and_drop_selection_enabled = false
 
-[node name="Stats" type="PanelContainer" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="Stats" type="PanelContainer" parent="Main UI/Game UI/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats"]
+[node name="MarginContainer" type="MarginContainer" parent="Main UI/Game UI/VBoxContainer/HBoxContainer/Stats"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="Main UI/Game UI/VBoxContainer/HBoxContainer/Stats/MarginContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="Population Label" type="Label" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats/GridContainer"]
+[node name="Population Label" type="Label" parent="Main UI/Game UI/VBoxContainer/HBoxContainer/Stats/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Population:"
 
-[node name="Population Value" type="Label" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats/GridContainer"]
+[node name="Population Value" type="Label" parent="Main UI/Game UI/VBoxContainer/HBoxContainer/Stats/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "000"
 horizontal_alignment = 2
 
-[node name="Grain Label" type="Label" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats/GridContainer"]
+[node name="Grain Label" type="Label" parent="Main UI/Game UI/VBoxContainer/HBoxContainer/Stats/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Grain:"
 
-[node name="Grain Value Label" type="Label" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats/GridContainer"]
+[node name="Grain Value Label" type="Label" parent="Main UI/Game UI/VBoxContainer/HBoxContainer/Stats/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "000"
 horizontal_alignment = 2
 
-[node name="Land Label" type="Label" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats/GridContainer"]
+[node name="Land Label" type="Label" parent="Main UI/Game UI/VBoxContainer/HBoxContainer/Stats/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Land:"
 
-[node name="Land Value Label" type="Label" parent="Main UI/CenterContainer/VBoxContainer/HBoxContainer/Stats/GridContainer"]
+[node name="Land Value Label" type="Label" parent="Main UI/Game UI/VBoxContainer/HBoxContainer/Stats/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "000"
 horizontal_alignment = 2
 
-[node name="Controls" type="PanelContainer" parent="Main UI/CenterContainer/VBoxContainer"]
+[node name="Controls" type="PanelContainer" parent="Main UI/Game UI/VBoxContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Main UI/CenterContainer/VBoxContainer/Controls"]
+[node name="MarginContainer" type="MarginContainer" parent="Main UI/Game UI/VBoxContainer/Controls"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Main UI/CenterContainer/VBoxContainer/Controls/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Main UI/Game UI/VBoxContainer/Controls/MarginContainer"]
 layout_mode = 2
 
-[node name="Year Label" type="Label" parent="Main UI/CenterContainer/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
+[node name="Year Label" type="Label" parent="Main UI/Game UI/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Year:"
 
-[node name="Year Value Label" type="Label" parent="Main UI/CenterContainer/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
+[node name="Year Value Label" type="Label" parent="Main UI/Game UI/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Main UI/CenterContainer/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Main UI/Game UI/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Acre Spinbox" type="SpinBox" parent="Main UI/CenterContainer/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
+[node name="Quantity Spinbox" type="SpinBox" parent="Main UI/Game UI/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_icons/updown = ExtResource("4_a6kq1")
 rounded = true
 alignment = 2
-suffix = "acres"
 custom_arrow_step = 1.0
 
-[node name="Buy Button" type="Button" parent="Main UI/CenterContainer/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
+[node name="Buy Button" type="Button" parent="Main UI/Game UI/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "Buy Land"
 
-[node name="Sell Button" type="Button" parent="Main UI/CenterContainer/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
+[node name="Sell Button" type="Button" parent="Main UI/Game UI/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "Sell Land"
 
-[node name="Plant Button" type="Button" parent="Main UI/CenterContainer/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
+[node name="Plant Button" type="Button" parent="Main UI/Game UI/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "Plant Grain"
 
-[node name="Menu System" parent="." instance=ExtResource("2_wfs1l")]
-visible = false
+[node name="Feed Button" type="Button" parent="Main UI/Game UI/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Feed Subjects"
 
+[node name="Next Year Button" type="Button" parent="Main UI/Game UI/VBoxContainer/Controls/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Next Year"
+
+[node name="Play Again Buttons" type="PanelContainer" parent="Main UI/Game UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main UI/Game UI/VBoxContainer/Play Again Buttons"]
+layout_mode = 2
+alignment = 1
+
+[node name="Play Again Button" type="Button" parent="Main UI/Game UI/VBoxContainer/Play Again Buttons/HBoxContainer"]
+layout_mode = 2
+text = "Play Again"
+
+[node name="Quit to Title Button" type="Button" parent="Main UI/Game UI/VBoxContainer/Play Again Buttons/HBoxContainer"]
+layout_mode = 2
+text = "Quit to Title"
+
+[node name="Menu System" parent="." instance=ExtResource("2_wfs1l")]
+
+[connection signal="pressed" from="Main UI/Game UI/VBoxContainer/Controls/MarginContainer/HBoxContainer/Next Year Button" to="." method="_on_next_year_button_pressed"]
+[connection signal="pressed" from="Main UI/Game UI/VBoxContainer/Play Again Buttons/HBoxContainer/Play Again Button" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="Main UI/Game UI/VBoxContainer/Play Again Buttons/HBoxContainer/Quit to Title Button" to="." method="_on_quit_to_title_button_pressed"]
 [connection signal="START_GAME" from="Menu System" to="." method="_on_menu_system_start_game"]

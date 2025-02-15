@@ -20,8 +20,12 @@ func _on_credits_button_pressed():
 
 
 func _on_ten_year_mode_button_pressed():
-	START_GAME.emit(10)
+	START_GAME.emit(Game.DEFAULT_REIGN_LENGTH)
 
 
 func _on_lifetime_mode_button_pressed():
 	START_GAME.emit(randi_range(60, 80))
+
+
+func _on_high_scores_button_pressed():
+	pass # Replace with function body.

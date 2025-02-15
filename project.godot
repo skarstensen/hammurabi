@@ -12,6 +12,7 @@ config_version=5
 
 config/name="Hammurabi"
 config/version="1.0"
+config/tags=PackedStringArray("games")
 run/main_scene="res://scenes/ui/game.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"

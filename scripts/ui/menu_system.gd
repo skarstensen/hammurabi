@@ -20,7 +20,7 @@ func _on_credits_button_pressed():
 
 
 func _on_ten_year_mode_button_pressed():
-	START_GAME.emit(Game.DEFAULT_REIGN_LENGTH)
+	START_GAME.emit(get_parent().defaultReignLength)
 
 
 func _on_lifetime_mode_button_pressed():

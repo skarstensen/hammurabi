@@ -54,7 +54,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Main Window" type="PanelContainer" parent="Main UI/Game UI/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(750, 400)
+custom_minimum_size = Vector2(750, 410)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Main UI/Game UI/VBoxContainer/HBoxContainer/Main Window"]

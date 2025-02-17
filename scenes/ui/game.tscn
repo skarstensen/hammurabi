@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://btn0fpp53vl7w" path="res://primary_theme.tres" id="2_a6l84"]
 [ext_resource type="PackedScene" uid="uid://w7ls8sn1xxit" path="res://scenes/ui/menu_system.tscn" id="2_wfs1l"]
 [ext_resource type="Texture2D" uid="uid://dhbqydf850vtt" path="res://gfx/arrowBeige_updown.png" id="4_a6kq1"]
-[ext_resource type="FontFile" uid="uid://b8unsx4awokls" path="res://PAPYRUS.TTF" id="4_xgwig"]
+[ext_resource type="FontFile" uid="uid://b8unsx4awokls" path="res://fonts/PAPYRUS.TTF" id="4_xgwig"]
 [ext_resource type="Script" path="res://scripts/ui/controls.gd" id="5_ar5ml"]
 
 [node name="Game" type="Node" node_paths=PackedStringArray("menuSystem", "gameUI", "messageBox", "populationLabel", "grainLabel", "acresLabel", "controlsContainer", "playButtonsContainer")]

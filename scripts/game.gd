@@ -54,6 +54,9 @@ var harvestedPerAcre:int
 var acresPlantedThisYear:int
 var grainFedToPeople:int
 
+var yearlyStarvationPercentage:int
+var totalDeaths:int
+
 func startGame():
 	menuSystem.hide()
 	gameUI.show()
@@ -76,6 +79,9 @@ func startGame():
 	land = startingAcres
 	acresPlantedThisYear = land
 	grainFedToPeople = population * grainRequiredPerPerson
+	
+	yearlyStarvationPercentage = 0
+	totalDeaths = 0
 	
 	processYear()
 
@@ -108,6 +114,7 @@ func processYear():
 		displayLine("Due to this extreme mismanagement, the city elders have rallied the citizens against you.")
 		displayLine("I suspect the mobs will be here to enforce your...\"dismissal\" shortly.")
 		displayLine("If I were you, I'd slip out the back before they arrived.")
+		updateHighScoreTable(year, 0)
 		endReign()
 	else:
 		displayLine("Hammurabi, I beg to report to you...\n")
@@ -121,15 +128,16 @@ func processYear():
 		
 		displayLine("The city owns %s acres of land." % land)
 		
-		if (acresPlantedThisYear == 0):
-			displayLine("We did not plant any seeds nor harvest any grain.")
-		else:
-			displayLine("We planted %s acres and harvested %s bushels of grain per acre." % [acresPlantedThisYear, harvestedPerAcre])
+		if (year > 1):
+			if (acresPlantedThisYear == 0):
+				displayLine("We did not plant any seeds nor harvest any grain.")
+			else:
+				displayLine("We planted %s acres and harvested %s bushels of grain per acre." % [acresPlantedThisYear, harvestedPerAcre])
 		
 		if (eatenByRats > 0):
 			displayLine("[color=brown]Rats ate %s bushels.[/color]" % eatenByRats)
 			
-		displayLine("We now have %s bushels in storage." % grain)
+		displayLine("We have %s bushels in storage." % grain)
 		
 		displayLine("Land is trading at %s bushels per acre." % landPrice)
 		
@@ -142,6 +150,9 @@ func processPopulationChange():
 	cameToCity = max(randi_range(1, 5) * (20 * land + grain) / population / 100, 1)
 	
 	population += cameToCity - starved
+	
+	totalDeaths += starved
+	yearlyStarvationPercentage = (year * yearlyStarvationPercentage + totalDeaths * 100 / population) / year
 	
 	if (randi_range(0, 100) <= 15):
 		diedFromPlague = population / 2
@@ -206,8 +217,35 @@ func setPlantMode():
 	
 
 func showFinalEvaluation():
-	pass
+	var reignInYears:int = year - 1
+	var startingAcresPerPerson:int = startingAcres / startingPopulation
+	var endingAcresPerPerson:int = land / population
+	var rank:int = 0
 	
+	displayLine("Hammurabi, your reign lasted a total of %s years." % reignInYears)
+	displayLine("During that time, %s percent of the population starved per year, on average." % yearlyStarvationPercentage)
+	displayLine("That is, a total of %s people died due to your mismanagement." % totalDeaths)
+	displayLine("You started with %s acres of land per person and ended with %s." % [startingAcresPerPerson, endingAcresPerPerson])
+
+	if (yearlyStarvationPercentage > 33 or endingAcresPerPerson < 7):
+		displayLine("Unfortunately, due to your mismanagement the people have risen up against you and demanded your exile.  Could be worse, I guess.  Might I suggest slipping out the back?")
+	elif(yearlyStarvationPercentage > 10 or endingAcresPerPerson < 9):
+		rank = 1
+		displayLine("Your heavy-handed rule reminds one of Emperor Nero, or perhaps Ivan the Terrible.  Yes, I know they haven't been born yet.")
+	elif(yearlyStarvationPercentage > 3 or endingAcresPerPerson < 10):
+		rank = 2
+		displayLine("You could have done better, I suppose, but the good news is that only %s people are calling for your assassination." % randi_range(1, population * 0.80))
+	else:
+		displayLine("O wise Hammurabi, your wisdom exceeds that of Jefferson, Charlemagne, and Disraeli combined!  Yes, I know they haven't been born yet.")
+		rank = 3
+	
+	updateHighScoreTable(reignInYears, rank)
+
+
+func updateHighScoreTable(reign, rating):
+	pass
+
+
 # Signal Handlers ##############################################################
 func _on_menu_system_start_game(reign):
 	reignLength = reign

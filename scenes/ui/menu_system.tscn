@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://w7ls8sn1xxit"]
 
 [ext_resource type="Script" path="res://scripts/ui/menu_system.gd" id="1_5gigl"]
-[ext_resource type="FontFile" uid="uid://b8unsx4awokls" path="res://PAPYRUS.TTF" id="1_k71br"]
+[ext_resource type="FontFile" uid="uid://b8unsx4awokls" path="res://fonts/PAPYRUS.TTF" id="1_k71br"]
 [ext_resource type="Theme" uid="uid://btn0fpp53vl7w" path="res://primary_theme.tres" id="2_14gwj"]
 
 [node name="Menu System" type="Control" node_paths=PackedStringArray("aboutDialog", "titleMenu", "gameTitleVersionLabel")]

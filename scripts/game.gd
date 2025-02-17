@@ -92,6 +92,9 @@ func displayLine(text:String):
 	
 	if (messageBox.text.contains(" 1 people")):
 		messageBox.text = messageBox.text.replace("1 people", "1 person")
+	
+	if (messageBox.text.contains(" 1 acres")):
+		messageBox.text = messageBox.text.replace("1 acres", "1 acre")
 
 
 func processYear():
@@ -100,26 +103,37 @@ func processYear():
 	processPopulationChange()
 	calculateLandPrice()
 	
-	displayLine("Hammurabi, I beg to report to you...\n")
-	
-	displayLine("In year %s, %s people starved, and %s people came to the city." % [year, starved, cameToCity])
-	
-	if (diedFromPlague > 0):
-		displayLine("A horrible plague struck!  Half the population died.")
-	
-	displayLine("The population is now %s." % population)
-	
-	displayLine("The city owns %s acres of land." % land)
-	displayLine("We harvested %s bushels of grain per acre." % harvestedPerAcre)
-	
-	if (eatenByRats > 0):
-		displayLine("Rats ate %s bushels." % eatenByRats)
+	if (starved > population * 0.45):
+		displayLine("Hammurabi!  You have starved %s people in one year!" % starved)
+		displayLine("Due to this extreme mismanagement, the city elders have rallied the citizens against you.")
+		displayLine("I suspect the mobs will be here to enforce your...\"dismissal\" shortly.")
+		displayLine("If I were you, I'd slip out the back before they arrived.")
+		endReign()
+	else:
+		displayLine("Hammurabi, I beg to report to you...\n")
 		
-	displayLine("We now have %s bushels in storage." % grain)
-	
-	displayLine("Land is trading at %s bushels per acre." % landPrice)
-	
-	controlsContainer.setBuySellMode()
+		displayLine("In year %s, %s people starved and %s people came to the city." % [year, starved, cameToCity])
+		
+		if (diedFromPlague > 0):
+			displayLine("[color=red]A horrible plague struck!  Half the population died.[/color]")
+		
+		displayLine("The population is now %s." % population)
+		
+		displayLine("The city owns %s acres of land." % land)
+		
+		if (acresPlantedThisYear == 0):
+			displayLine("We did not plant any seeds nor harvest any grain.")
+		else:
+			displayLine("We planted %s acres and harvested %s bushels of grain per acre." % [acresPlantedThisYear, harvestedPerAcre])
+		
+		if (eatenByRats > 0):
+			displayLine("[color=brown]Rats ate %s bushels.[/color]" % eatenByRats)
+			
+		displayLine("We now have %s bushels in storage." % grain)
+		
+		displayLine("Land is trading at %s bushels per acre." % landPrice)
+		
+		controlsContainer.setBuySellMode()
 
 
 func processPopulationChange():
@@ -147,6 +161,7 @@ func processRats():
 	
 	grain -= eatenByRats
 
+
 func calculateLandPrice():
 	landPrice = randi_range(17, 27)
 
@@ -159,6 +174,7 @@ func advanceYear():
 	if (year <= reignLength):
 		processYear()
 	else:
+		showFinalEvaluation()
 		endReign()
 
 
@@ -188,6 +204,9 @@ func setPlantMode():
 	displayLine("How many acres of land do you wish to plant with seed?")
 	controlsContainer.setPlantMode()
 	
+
+func showFinalEvaluation():
+	pass
 	
 # Signal Handlers ##############################################################
 func _on_menu_system_start_game(reign):
@@ -228,7 +247,7 @@ func _on_sell_button_pressed():
 			displayLine("Hammurabi, you cannot sell that much land!  We only have %s acres." % land)
 		else:
 			displayLine("Very well.  We have sold %s acres of land." % acresToSell)
-			adjustLandOwnership(acresToSell)
+			adjustLandOwnership(-acresToSell)
 
 
 func _on_plant_button_pressed():
@@ -263,7 +282,7 @@ func _on_feed_button_pressed():
 		grainFedToPeople = bushelsForFood
 		grain -= grainFedToPeople
 		displayLine("Very well.  We shall allocate %s bushels of grain for food." % grainFedToPeople)
-		controlsContainer.setPlantMode()
+		setPlantMode()
 	else:
 		displayLine("Hammurabi, we don't have that much grain.  There are only %s bushels in storage." % grain)
 

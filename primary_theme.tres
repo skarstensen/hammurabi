@@ -35,9 +35,9 @@ region_rect = Rect2(0, 0, 45, 49)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d33is"]
 texture = ExtResource("4_r28ov")
 texture_margin_left = 7.0
-texture_margin_top = 4.0
+texture_margin_top = 7.0
 texture_margin_right = 8.0
-texture_margin_bottom = 4.0
+texture_margin_bottom = 6.0
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 

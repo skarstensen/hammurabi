@@ -24,6 +24,7 @@ func hideAllButtons():
 
 func setBuySellMode():
 	hideAllButtons()
+	quantity.show()
 	quantity.suffix = "acres"
 	buyButton.show()
 	sellButton.show()
@@ -44,4 +45,5 @@ func setFeedMode():
 
 func setNextMode():
 	hideAllButtons()
+	quantity.hide()
 	nextButton.show()

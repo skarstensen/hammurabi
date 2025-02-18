@@ -8,11 +8,13 @@ const SAVE_PATH:String = "user://hok.dat"
 @export var xIcon:PackedScene
 
 @export var scores:Control
+@export var nobodyLabel:Label
 
 var entries:Array[HighScoreEntry] = []
 
 func _ready():
 	loadScores()
+	updateDisplay()
 
 
 func addEntry(reign, rating):
@@ -22,7 +24,8 @@ func addEntry(reign, rating):
 	entries.append(HighScoreEntry.new(dateString, reign, rating))
 	entries.sort_custom(func(e1, e2): return e1.rank > e2.rank)
 	
-	entries.remove_at(entries.size() - 1)
+	if (entries.size() > 5):
+		entries.remove_at(entries.size() - 1)
 	
 	updateDisplay()
 
@@ -50,6 +53,13 @@ func saveScores():
 
 
 func updateDisplay():
+	if (entries.size() == 0):
+		nobodyLabel.show()
+		scores.hide()
+	else:
+		nobodyLabel.hide()
+		scores.show()
+	
 	for child in scores.get_children():
 		if (child.get_index() >= entries.size()):
 			child.hide()
@@ -65,6 +75,12 @@ func updateDisplay():
 			else:
 				for icon in range(entries[child.get_index()].rank):
 					child.get_node("Rank").add_child(starIcon.instantiate())
+			
+			child.show()
+
+
+func _on_ok_button_pressed():
+	hide()
 
 
 class HighScoreEntry:

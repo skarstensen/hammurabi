@@ -119,6 +119,7 @@ text = "Hammurabi v%s"
 
 [node name="About Text" type="Label" parent="About Dialog/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 18
 text = "Hammurabi (original Focal version): author unknown
 Converted to BASIC by David Ahl, circa 1978
 
@@ -128,13 +129,15 @@ Photo credit: The City of Ur, Southern Iraq by M. Lubinski
 Released via Creative Commons 4.0 Sharealike
 https://creativecommons.org/licenses/by-sa/4.0/
 
-UI Graphics: UI Pack - RPG Expansion by Kenney.nl"
+UI Graphics: UI Pack - RPG Expansion by Kenney
+http://kenney.nl"
 
 [node name="OK Button" type="Button" parent="About Dialog/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "OK"
 
-[node name="Hall of Kings" type="CenterContainer" parent="." node_paths=PackedStringArray("scores")]
+[node name="Hall of Kings" type="CenterContainer" parent="." node_paths=PackedStringArray("scores", "nobodyLabel")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -145,6 +148,7 @@ script = ExtResource("4_lkijf")
 starIcon = ExtResource("5_blj8j")
 xIcon = ExtResource("6_amwwi")
 scores = NodePath("PanelContainer/MarginContainer/VBoxContainer/Scores")
+nobodyLabel = NodePath("PanelContainer/MarginContainer/VBoxContainer/No Entries")
 
 [node name="PanelContainer" type="PanelContainer" parent="Hall of Kings"]
 layout_mode = 2
@@ -197,7 +201,17 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_7hen4")
 
+[node name="No Entries" type="Label" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(458, 0)
+layout_mode = 2
+text = "Alas, no one has ruled our great city.
+Play a game to be entered into the record!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="Scores" type="VBoxContainer" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Score 1" type="HBoxContainer" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores"]
@@ -339,3 +353,4 @@ text = "OK"
 [connection signal="pressed" from="Title Screen/MarginContainer/VBoxContainer/MarginContainer/Buttons/High Scores Button" to="." method="_on_high_scores_button_pressed"]
 [connection signal="pressed" from="Title Screen/MarginContainer/VBoxContainer/MarginContainer/Buttons/Credits Button" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="About Dialog/PanelContainer/MarginContainer/VBoxContainer/OK Button" to="." method="_on_about_ok_button_pressed"]
+[connection signal="pressed" from="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/OK Button" to="Hall of Kings" method="_on_ok_button_pressed"]

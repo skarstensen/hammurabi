@@ -64,6 +64,8 @@ func startGame():
 	controlsContainer.show()
 	playButtonsContainer.hide()
 	
+	messageBox.text = ""
+	
 	if (reignLength == defaultReignLength):
 		displayLine("O wise Hammurabi, you have agreed to govern us for %s years." % reignLength)
 	else:
@@ -272,7 +274,7 @@ func _on_buy_button_pressed():
 			displayLine("Very well.  We have purchased %s acres of land." % acresToPurchase)
 			adjustLandOwnership(acresToPurchase)
 		else:
-			displayLine("Hammurabi, that much land would cost us %s bushels of grain.  We only have %s available." % [cost, grain])
+			displayLine("Hammurabi, that much land would cost us %s bushels of grain.  We only have %s bushels available." % [cost, grain])
 
 
 func _on_sell_button_pressed():

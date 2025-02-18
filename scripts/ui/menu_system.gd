@@ -29,4 +29,4 @@ func _on_lifetime_mode_button_pressed():
 
 
 func _on_high_scores_button_pressed():
-	pass # Replace with function body.
+	highScores.show()

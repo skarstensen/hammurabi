@@ -7,6 +7,7 @@ signal START_GAME(reign:int)
 @export var aboutDialog:Control
 @export var titleMenu:Control
 @export var gameTitleVersionLabel:Label
+@export var highScores:Control
 
 func _ready():
 	gameTitleVersionLabel.text = gameTitleVersionLabel.text % ProjectSettings.get_setting("application/config/version")

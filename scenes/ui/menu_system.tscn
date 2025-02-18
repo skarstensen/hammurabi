@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://w7ls8sn1xxit"]
+[gd_scene load_steps=8 format=3 uid="uid://w7ls8sn1xxit"]
 
 [ext_resource type="Script" path="res://scripts/ui/menu_system.gd" id="1_5gigl"]
 [ext_resource type="FontFile" uid="uid://b8unsx4awokls" path="res://fonts/PAPYRUS.TTF" id="1_k71br"]
 [ext_resource type="Theme" uid="uid://btn0fpp53vl7w" path="res://primary_theme.tres" id="2_14gwj"]
+[ext_resource type="Script" path="res://scripts/ui/hall_of_kings.gd" id="4_lkijf"]
+[ext_resource type="PackedScene" uid="uid://cargriaiwvr3n" path="res://scenes/ui/ho_k_icon_star.tscn" id="5_blj8j"]
+[ext_resource type="PackedScene" uid="uid://cbwjoxv2rj612" path="res://scenes/ui/ho_k_icon_x.tscn" id="6_amwwi"]
 
-[node name="Menu System" type="Control" node_paths=PackedStringArray("aboutDialog", "titleMenu", "gameTitleVersionLabel")]
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_7hen4"]
+color = Color(0.389086, 0.269676, 0.0981869, 1)
+thickness = 3
+
+[node name="Menu System" type="Control" node_paths=PackedStringArray("aboutDialog", "titleMenu", "gameTitleVersionLabel", "highScores")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +22,7 @@ script = ExtResource("1_5gigl")
 aboutDialog = NodePath("About Dialog")
 titleMenu = NodePath("Title Screen")
 gameTitleVersionLabel = NodePath("About Dialog/PanelContainer/MarginContainer/VBoxContainer/Game Title and Version")
+highScores = NodePath("Hall of Kings")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -123,6 +131,206 @@ https://creativecommons.org/licenses/by-sa/4.0/
 UI Graphics: UI Pack - RPG Expansion by Kenney.nl"
 
 [node name="OK Button" type="Button" parent="About Dialog/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "OK"
+
+[node name="Hall of Kings" type="CenterContainer" parent="." node_paths=PackedStringArray("scores")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_lkijf")
+starIcon = ExtResource("5_blj8j")
+xIcon = ExtResource("6_amwwi")
+scores = NodePath("PanelContainer/MarginContainer/VBoxContainer/Scores")
+
+[node name="PanelContainer" type="PanelContainer" parent="Hall of Kings"]
+layout_mode = 2
+theme = ExtResource("2_14gwj")
+
+[node name="MarginContainer" type="MarginContainer" parent="Hall of Kings/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Hall of Kings/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Hall of Kings"
+horizontal_alignment = 1
+
+[node name="Headers" type="HBoxContainer" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Date" type="Label" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Headers"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "Date"
+horizontal_alignment = 1
+
+[node name="Length" type="Label" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Headers"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "Reign"
+horizontal_alignment = 1
+
+[node name="Rank" type="Label" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Headers"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "Rank"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_7hen4")
+
+[node name="Scores" type="VBoxContainer" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Score 1" type="HBoxContainer" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores"]
+layout_mode = 2
+
+[node name="Date" type="Label" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores/Score 1"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "99/99/99
+"
+
+[node name="Length" type="Label" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores/Score 1"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "99 years"
+horizontal_alignment = 2
+
+[node name="Rank" type="HBoxContainer" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores/Score 1"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Score 2" type="HBoxContainer" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores"]
+layout_mode = 2
+
+[node name="Date" type="Label" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores/Score 2"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "99/99/99
+"
+
+[node name="Length" type="Label" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores/Score 2"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "99 years"
+horizontal_alignment = 2
+
+[node name="Rank" type="HBoxContainer" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores/Score 2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Score 3" type="HBoxContainer" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores"]
+layout_mode = 2
+
+[node name="Date" type="Label" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores/Score 3"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "99/99/99
+"
+
+[node name="Length" type="Label" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores/Score 3"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "99 years"
+horizontal_alignment = 2
+
+[node name="Rank" type="HBoxContainer" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores/Score 3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Score 4" type="HBoxContainer" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores"]
+layout_mode = 2
+
+[node name="Date" type="Label" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores/Score 4"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "99/99/99
+"
+
+[node name="Length" type="Label" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores/Score 4"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "99 years"
+horizontal_alignment = 2
+
+[node name="Rank" type="HBoxContainer" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores/Score 4"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Score 5" type="HBoxContainer" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores"]
+layout_mode = 2
+
+[node name="Date" type="Label" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores/Score 5"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "99/99/99
+"
+
+[node name="Length" type="Label" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores/Score 5"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "99 years"
+horizontal_alignment = 2
+
+[node name="Rank" type="HBoxContainer" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer/Scores/Score 5"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxLine_7hen4")
+
+[node name="OK Button" type="Button" parent="Hall of Kings/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "OK"
 

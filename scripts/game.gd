@@ -243,7 +243,7 @@ func showFinalEvaluation():
 
 
 func updateHighScoreTable(reign, rating):
-	pass
+	menuSystem.highScores.addEntry(reign, rating)
 
 
 # Signal Handlers ##############################################################

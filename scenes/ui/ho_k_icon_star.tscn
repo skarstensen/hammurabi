@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cargriaiwvr3n"]
+
+[ext_resource type="Texture2D" uid="uid://cgr24fm54td5y" path="res://gfx/hok_icons_1.png" id="1_al311"]
+
+[node name="HoK Icon" type="TextureRect"]
+custom_minimum_size = Vector2(43, 41)
+offset_right = 43.0
+offset_bottom = 41.0
+texture = ExtResource("1_al311")
+expand_mode = 1

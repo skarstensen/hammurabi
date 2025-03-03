@@ -114,7 +114,7 @@ func processYear():
 	if (starved > population * 0.45):
 		displayLine("Hammurabi!  You have starved %s people in one year!" % starved)
 		displayLine("Due to this extreme mismanagement, the city elders have rallied the citizens against you.")
-		displayLine("I suspect the mobs will be here to enforce your...\"dismissal\" shortly.")
+		displayLine("I suspect the mobs will be here to enforce your... \"dismissal\" shortly.")
 		displayLine("If I were you, I'd slip out the back before they arrived.")
 		updateHighScoreTable(year, 0)
 		endReign()

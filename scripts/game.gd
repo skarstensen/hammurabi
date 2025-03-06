@@ -21,7 +21,7 @@ class_name Game
 @export var startingAcres:int = 1000
 @export var grainRequiredPerPerson:int = 20
 @export var acresTendedPerPerson:int = 10
-@export var bushelsRequiredPerAcre:int = 2
+@export var bushelRatioPerAcre:int = 2
 
 var population:int:
 	set(value):
@@ -293,7 +293,7 @@ func _on_sell_button_pressed():
 func _on_plant_button_pressed():
 	var acresToPlant:int = controlsContainer.quantity.value
 	var peopleNeeded:int = acresToPlant / acresTendedPerPerson
-	var grainNeeded:int = acresToPlant / bushelsRequiredPerAcre
+	var grainNeeded:int = acresToPlant / bushelRatioPerAcre
 	var canPlant:bool = true
 
 	if (peopleNeeded > population):
